@@ -1,6 +1,7 @@
 #ifndef DOUBLE_LINKED_LIST_H
 #define DOUBLE_LINKED_LIST_H
 #pragma once
+#include <iostream>
 
 namespace jb{
 
