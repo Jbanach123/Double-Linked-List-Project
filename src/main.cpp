@@ -1,6 +1,16 @@
 #include <DoubleLinkedList.hpp>
 #include <string.h>
 
+/**
+ * @brief Main function demonstrating the use of the DoubleLinkedList class.
+ * 
+ * This function showcases the creation and manipulation of two double-linked lists:
+ * one containing integers and the other containing strings. The operations include
+ * inserting elements, deleting elements, reversing the list, and printing the list contents and size.
+ * 
+ * @return 0 upon successful execution.
+ */
+
 int main() {
     
     /**
