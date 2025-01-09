@@ -5,31 +5,54 @@
 
 namespace jb{
 
+/**
+ * @brief A template class representing double linked list.
+ * 
+ * @tparam T the type of data stored in nodes of the list.
+ */
 template <typename T>
 class DoubleLinkedList {
 private:
-
+    /**
+     * @brief Inner class representing a single node in doubly linked list.
+     */
     class Node {
         public:
-        T data;
-        Node* prev;
-        Node* next;
+        T data;     ///< Data stored in the node.
+        Node* prev; ///< Pointer to the previous node.
+        Node* next; ///< Pointer to the next node.
 
+        /**
+         * @brief Constructs a Node with the given value.
+         * 
+         * @param value The value to be stored in the node.
+         */
         Node(const T& value) : data(value), prev(nullptr), next(nullptr) {}
     };
 
-    Node* m_head;
-    Node* m_tail;
-    size_t m_size;
+    Node* m_head;  ///< Pointer to the first element of the list.
+    Node* m_tail;  ///< Pointer to the last element of the list.
+    size_t m_size; ///< The number of elements in the list.
 
 public:
+    
+    /**
+     * @brief Construts an empty doubly linked list.
+     */
     DoubleLinkedList() : m_head(nullptr), m_tail(nullptr), m_size(0) {}
-
+    
+    /**
+     * @brief Destroys the doubly linked list and frees allocated memory.
+     */
     ~DoubleLinkedList() {
         clear();
     }
-
-    // Add element on the front
+    
+    /**
+     * @brief Inserts an new Node at the front of the list.
+     * 
+     * @param value The value of the Node to be inserted.
+     */
     void insert_front(const T& value) {
         Node* newNode = new Node(value);
         // If list is empty
@@ -43,7 +66,11 @@ public:
         ++m_size;
     }
 
-    // Add element on the end 
+    /**
+     * @brief Inserts an new Node at the end of the list.
+     * 
+     * @param value The value of the Node to be inserted.
+     */
     void insert_back(const T& value) {
         Node* newNode = new Node(value);
         // If list is empty
@@ -56,7 +83,13 @@ public:
         }
         ++m_size;
     }
-    // Add element to the specific place in list
+    /**
+     * @brief Inserts a new Node at the specified list position.
+     * 
+     * 
+     * @param value The value of the Node to be inserted.
+     * @param position The position where the value should be inserted (1-based index).
+     */
     void insert_at_position(const T& value, int position) {
         if (position < 1){
             std::cout<<"Position can't be lower than 1." << std::endl;
@@ -73,13 +106,13 @@ public:
         for (int i = 1; temp != nullptr && i < position -1; i++){
             temp = temp->next;
         }
-        // Check if position is not out of range
+        // Checking if position is not out of range
         if (temp == nullptr) {
             std::cout << "Position greater than length of the list." << std::endl;
             return;
         }
         
-        // Add new node at the specified position.
+        // Adding new node at the specified position.
         newNode->next = temp->next;
         newNode->prev = temp;
         if (temp->next != nullptr) {
@@ -90,20 +123,29 @@ public:
         ++m_size;
     }
 
-    // Delete element from front
+    /**
+     * @brief Deletes the first Node in the list.
+     */
     void delete_front() {
         if (m_head == nullptr) return;
 
         delete_element(1);
     }
 
-    // Delete element from end
+    /**
+     * @brief Deletes the last Node in the list.
+     */
     void delete_back() {
         if (m_tail == nullptr) return;
 
         delete_element(m_size);
     }
-    // Delete element
+
+     /**
+     * @brief Deletes a Node at a specific position.
+     * 
+     * @param position The position of the Node to delete (1-based index).
+     */
     void delete_element(int position) {
         if (position < 1){
             std::cout<<"Position can't be lower than 1." << std::endl;
@@ -116,13 +158,13 @@ public:
             temp = temp->next;
         }
 
-        // Check if position is not out of range
+        // Checking if position is not out of range
         if (temp == nullptr) {
             std::cout << "Position greater than length of the list." << std::endl;
             return;
         }
 
-        // Delete new node at the specified position.
+        // Deleting Node from a specific position.
         if(temp->next){
             temp->next->prev = temp->prev;
         }
@@ -141,19 +183,24 @@ public:
 
     }
 
-    // Deleting all elements
+     /**
+     * @brief Clears the entire list, deleting all Nodes.
+     */
     void clear() {
         while (m_head) {
             delete_front();
         }
     }
-    
+
+    /**
+    * @brief Reverses the order of elements in the list.
+    */
     void reverse(){
         Node* current = m_head;
         Node* temp = nullptr;
 
         while(current){
-            // Swap the next and prev pointers
+            // Swaping the next and prev pointers
             temp = current->prev;
             current->prev = current->next;
             current->next = temp;
@@ -166,7 +213,9 @@ public:
         m_tail = temp;
     }
 
-    // Display list
+    /**
+     * @brief Prints the values of Nodes in the list to the console.
+     */
     void print() const {
         Node* current = m_head;
         while (current) {
@@ -176,12 +225,16 @@ public:
         std::cout << std::endl;
     }
 
-    // List size
+     /**
+     * @brief Gets the size of the list.
+     * 
+     * @return The number of elements in the list.
+     */
     size_t getSize() const {
         return m_size;
     }
 };
 
-}// jb
+} ///< namespace jb
 
-#endif // DOUBLE_LINKED_LIST_H
+#endif ///< DOUBLE_LINKED_LIST_H
