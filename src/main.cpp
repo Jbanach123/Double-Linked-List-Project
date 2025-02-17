@@ -1,21 +1,15 @@
 #include <DoubleLinkedList.hpp>
 #include <string.h>
 
-/**
- * @brief Main function demonstrating the use of the DoubleLinkedList class.
- * 
- * This function showcases the creation and manipulation of two double-linked lists:
- * one containing integers and the other containing strings. The operations include
- * inserting elements, deleting elements, reversing the list, and printing the list contents and size.
- * 
- * @return 0 upon successful execution.
+/*
+ This function showcases the creation and manipulation of two double-linked lists:
+ one containing integers and the other containing strings. The operations include
+ inserting elements, deleting elements, reversing the list, and printing the list contents and size.
  */
 
 int main() {
     
-    /**
-     * @brief Demonstrating operations on an integer list.
-     */
+    /* Demonstrating operations on an integer list.*/
 
     jb::DoubleLinkedList<int> num_list;
 
@@ -47,9 +41,7 @@ int main() {
     // Displaying the size of the list
     std::cout << "List size: " << num_list.getSize() << std::endl;
 
-    /**
-     * @brief Demonstrating operations on a string list.
-     */
+    /* Demonstrating operations on a string list. */ 
 
     jb::DoubleLinkedList<std::string> str_list;
     
